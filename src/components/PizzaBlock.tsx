@@ -1,23 +1,45 @@
-function PizzaBlock(props: { title: string; price: number; imageUrl: string }) {
+import { useState } from 'react';
+import { PizzaType } from '../lib/types';
+
+function PizzaBlock({ title, price, imageUrl, types, sizes }: PizzaType) {
+	const [activeType, setActiveType] = useState(0);
+	const [activeSize, setActiveSize] = useState(0);
+	const [count, setCount] = useState(0);
+
 	return (
 		<div className='pizza-block'>
-			<img className='pizza-block__image' src={props.imageUrl} alt='Pizza' />
-			<h4 className='pizza-block__title'>{props.title}</h4>
+			<img className='pizza-block__image' src={imageUrl} alt={title} />
+			<h4 className='pizza-block__title'>{title}</h4>
 			<div className='pizza-block__selector'>
 				<ul>
-					<li className='active'>тонкое</li>
-					<li>традиционное</li>
+					{types.length > 0 ? types.map((type, index) => (
+						<li
+							key={index}
+							onClick={() => setActiveType(index)}
+							className={activeType === index ? 'active' : ''}
+						>
+							{type}
+						</li>
+					)) : <li>Нет данных</li>}
 				</ul>
 				<ul>
-					<li className='active'>26 см.</li>
-					<li>30 см.</li>
-					<li>40 см.</li>
-					<li>50 см.</li>
+					{sizes.length > 0 ? sizes.map((size, index) => (
+						<li
+							key={index}
+							onClick={() => setActiveSize(index)}
+							className={activeSize === index ? 'active' : ''}
+						>
+							{size} см.
+						</li>
+					)) : <li>Нет данных</li>}
 				</ul>
 			</div>
 			<div className='pizza-block__bottom'>
-				<div className='pizza-block__price'>от {props.price} ₽</div>
-				<div className='button button--outline button--add'>
+				<div className='pizza-block__price'>от {price} ₽</div>
+				<div
+					onClick={() => setCount(count + 1)}
+					className='button button--outline button--add'
+				>
 					<svg
 						width='12'
 						height='12'
@@ -31,7 +53,7 @@ function PizzaBlock(props: { title: string; price: number; imageUrl: string }) {
 						/>
 					</svg>
 					<span>Добавить</span>
-					<i>2</i>
+					<i>{count}</i>
 				</div>
 			</div>
 		</div>

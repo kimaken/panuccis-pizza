@@ -5,6 +5,8 @@ import Categories from './components/Categories';
 import Sort from './components/Sort';
 import PizzaBlock from './components/PizzaBlock';
 
+import { pizzas } from './lib/data';
+
 function App() {
 	return (
 		<>
@@ -18,11 +20,9 @@ function App() {
 						</div>
 						<h2 className='content__title'>Все пиццы</h2>
 						<div className='content__items'>
-							<PizzaBlock
-								title='Чизбургер-пицца'
-								price={395}
-								imageUrl='https://cdn.dodostatic.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-							/>
+							{pizzas.map(pizza => (
+								<PizzaBlock key={pizza.id} {...pizza} />
+							))}
 						</div>
 					</div>
 				</div>
