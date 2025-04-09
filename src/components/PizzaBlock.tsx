@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { PizzaType } from '../lib/types';
 
-function PizzaBlock({ title, price, imageUrl, types, sizes }: PizzaType) {
+function PizzaBlock({ imageUrl, title, types, sizes, price }: PizzaType) {
 	const [activeType, setActiveType] = useState(0);
 	const [activeSize, setActiveSize] = useState(0);
-	const [count, setCount] = useState(0);
+	const [pizzaCount, setCount] = useState(0);
+
+	const typeNames = ['тонкое', 'традиционное'];
 
 	return (
 		<div className='pizza-block'>
@@ -12,32 +14,40 @@ function PizzaBlock({ title, price, imageUrl, types, sizes }: PizzaType) {
 			<h4 className='pizza-block__title'>{title}</h4>
 			<div className='pizza-block__selector'>
 				<ul>
-					{types.length > 0 ? types.map((type, index) => (
-						<li
-							key={index}
-							onClick={() => setActiveType(index)}
-							className={activeType === index ? 'active' : ''}
-						>
-							{type}
-						</li>
-					)) : <li>Нет данных</li>}
+					{types.length > 0 ? (
+						types.map((type, index) => (
+							<li
+								key={index}
+								onClick={() => setActiveType(index)}
+								className={activeType === index ? 'active' : ''}
+							>
+								{typeNames[type]}
+							</li>
+						))
+					) : (
+						<li>Нет данных</li>
+					)}
 				</ul>
 				<ul>
-					{sizes.length > 0 ? sizes.map((size, index) => (
-						<li
-							key={index}
-							onClick={() => setActiveSize(index)}
-							className={activeSize === index ? 'active' : ''}
-						>
-							{size} см.
-						</li>
-					)) : <li>Нет данных</li>}
+					{sizes.length > 0 ? (
+						sizes.map((size, index) => (
+							<li
+								key={index}
+								onClick={() => setActiveSize(index)}
+								className={activeSize === index ? 'active' : ''}
+							>
+								{size} см.
+							</li>
+						))
+					) : (
+						<li>Нет данных</li>
+					)}
 				</ul>
 			</div>
 			<div className='pizza-block__bottom'>
 				<div className='pizza-block__price'>от {price} ₽</div>
 				<div
-					onClick={() => setCount(count + 1)}
+					onClick={() => setCount(pizzaCount + 1)}
 					className='button button--outline button--add'
 				>
 					<svg
@@ -53,7 +63,7 @@ function PizzaBlock({ title, price, imageUrl, types, sizes }: PizzaType) {
 						/>
 					</svg>
 					<span>Добавить</span>
-					<i>{count}</i>
+					<i>{pizzaCount}</i>
 				</div>
 			</div>
 		</div>

@@ -1,8 +1,10 @@
 export type PizzaType = {
 	id: number;
-	title: string;
-	price: number;
 	imageUrl: string;
-	types: string[];
+	title: string;
+	types: number[];
 	sizes: number[];
+	price: number;
+	category: number;
+	rating: number;
 };
