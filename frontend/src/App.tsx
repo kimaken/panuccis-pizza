@@ -8,6 +8,10 @@ import PizzaBlock from './components/PizzaBlock';
 import { pizzas } from './lib/data';
 
 function App() {
+	fetch('http://localhost:4000/pizzas')
+		.then(res => res.json())
+		.then(data => console.log(data));
+
 	return (
 		<>
 			<div className='wrapper'>
