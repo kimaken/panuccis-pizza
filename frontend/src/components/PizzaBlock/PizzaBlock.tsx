@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PizzaType } from '../lib/types';
+import { PizzaType } from '../../lib/types';
 
 function PizzaBlock({ imageUrl, title, types, sizes, price }: PizzaType) {
 	const [activeType, setActiveType] = useState(0);
