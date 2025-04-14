@@ -22,7 +22,7 @@ function App() {
 				}
 				const arr: PizzaType[] = await res.json();
 				console.log('Данные с бэка:', arr);
-				await new Promise(resolve => setTimeout(resolve, 3000)); // 💤 показать скелетон
+				await new Promise(resolve => setTimeout(resolve, 3000)); // показать скелетон
 				setItems(arr);
 			} catch (error) {
 				console.error('Ошибка при загрузке пицц:', error);
@@ -46,7 +46,7 @@ function App() {
 					<h2 className='content__title'>Все пиццы</h2>
 					<div className='content__items'>
 						{isLoading
-							? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
+							? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
 							: items.map(pizza => <PizzaBlock key={pizza.id} {...pizza} />)}
 					</div>
 				</div>
