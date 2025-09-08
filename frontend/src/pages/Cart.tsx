@@ -1,4 +1,4 @@
 const Cart = () => {
-	return <h1>Корзина</h1>;
+  return <h1>Корзина</h1>;
 };
 export default Cart;
