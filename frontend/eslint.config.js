@@ -45,7 +45,7 @@ export default defineConfig([
       ...reactRefreshPlugin.configs.vite.rules,
       'prettier/prettier': 'error',
       'no-unused-vars': 'warn',
-      'no-console': 'warn',
+      'no-console': 'off',
     },
   },
 ]);
