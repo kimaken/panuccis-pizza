@@ -1,10 +1,5 @@
 import { Router } from 'express';
-import {
-	getPizzas,
-	getPizzaById,
-	createPizza,
-	deletePizza,
-} from '../controllers/pizzaController';
+import { getPizzas, getPizzaById, createPizza, deletePizza } from '../controllers/pizzaController';
 
 const router = Router();
 
